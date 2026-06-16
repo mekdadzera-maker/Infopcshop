@@ -14,8 +14,8 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+            transition={{ duration: 0.6 }}>
+            
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-6">
               <Zap className="w-4 h-4" /> Nouveau catalogue disponible
             </div>
@@ -47,19 +47,19 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="hidden md:block"
-          >
+            className="hidden md:block">
+            
             <div className="relative">
               <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl pointer-events-none" />
-              <img
-                src={HERO_IMAGE}
-                alt="PC Hardware Components"
-                className="rounded-3xl w-full object-cover shadow-2xl"
-              />
+              <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/e62956e10_timur-garifov--HlaGdSiC-g-unsplash.jpg"
+
+              alt="PC Hardware Components"
+              className="rounded-3xl w-full object-cover shadow-2xl" />
+              
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
