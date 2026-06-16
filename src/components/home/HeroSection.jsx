@@ -4,7 +4,7 @@ import { ArrowRight, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
-const HERO_IMAGE = 'https://base44-public.s3.us-east-1.amazonaws.com/app-assets/img_d0f92ddc226e.png';
+const HERO_IMAGE = 'https://media.base44.com/images/public/6a3176065c179e117d336ad5/93a2a0fd4_generated_image.png';
 
 export default function HeroSection() {
   return (
