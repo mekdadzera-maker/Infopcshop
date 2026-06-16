@@ -4,7 +4,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const contactInfo = [
-  { icon: Phone, label: 'Téléphone', value: '0770 66 24 25', href: 'tel:+213770662425' },
+  {
+    icon: Phone,
+    label: 'Téléphone',
+    values: [
+      { display: '0770 66 24 25', href: 'tel:+213770662425' },
+      { display: '0560 86 33 70', href: 'tel:+213560863370' },
+    ],
+  },
   { icon: MapPin, label: 'Adresse', value: 'N 50c Cité 345 Lgt Al-wiam Sidi Jilali, Sidi Bel Abbès' },
   { icon: Clock, label: 'Horaires', value: 'Sam–Jeu: 9h00 – 20h00' },
 ];
@@ -27,11 +34,19 @@ export default function Contact() {
                 <info.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-heading font-semibold mb-1">{info.label}</h3>
-              <p className="text-sm text-muted-foreground">{info.value}</p>
-              {info.href && (
-                <Button variant="link" className="mt-2" asChild>
-                  <a href={info.href}>Appeler maintenant</a>
-                </Button>
+              {info.values ? (
+                <div className="space-y-1">
+                  {info.values.map((v, j) => (
+                    <div key={j}>
+                      <p className="text-sm text-muted-foreground">{v.display}</p>
+                      <Button variant="link" className="mt-0 h-auto py-0 text-xs" asChild>
+                        <a href={v.href}>Appeler</a>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">{info.value}</p>
               )}
             </CardContent>
           </Card>
@@ -42,12 +57,13 @@ export default function Contact() {
       <div className="rounded-2xl overflow-hidden border border-border h-80">
         <iframe
           title="INFO PC SBA Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3258.7!2d-0.64!3d35.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDExJzI0LjAiTiAwwrAzOCcyNC4wIlc!5e0!3m2!1sfr!2sdz!4v1"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.8523955285635!2d-0.6344!3d35.1897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd789e4d17f60001%3A0x0!2zU2lkaSBCZWwgQWJiw6hz!5e0!3m2!1sfr!2sdz!4v1700000000000!5m2!1sfr!2sdz"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
 

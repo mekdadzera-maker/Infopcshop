@@ -69,6 +69,16 @@ export default function Checkout() {
       total,
       status: 'pending_confirmation',
     });
+
+    // Send email notification to store owner
+    const itemsList = items.map(i => `• ${i.quantity}x ${i.product_name} — ${(i.price * i.quantity).toLocaleString('fr-DZ')} DA`).join('\n');
+    await base44.integrations.Core.SendEmail({
+      to: 'tester.infopc@gmail.com',
+      from_name: 'INFO PC SBA — Nouvelle Commande',
+      subject: `🛒 Nouvelle commande — ${form.customer_name} (${form.customer_phone})`,
+      body: `Nouvelle commande reçue !\n\nClient: ${form.customer_name}\nTéléphone: ${form.customer_phone}\nEmail: ${form.customer_email || '—'}\nWilaya: ${form.wilaya}\nLivraison: ${form.shipping_method === 'home_delivery' ? 'À domicile' : 'Stop-Desk'}\nAdresse: ${form.address || '—'}\n\nArticles:\n${itemsList}\n\nSous-total: ${subtotal.toLocaleString('fr-DZ')} DA\nFrais de livraison: ${shippingFee.toLocaleString('fr-DZ')} DA\nTOTAL: ${total.toLocaleString('fr-DZ')} DA\n\nNotes: ${form.notes || '—'}\n\nVeuillez contacter le client par téléphone pour confirmer la commande.`,
+    });
+
     clearCart();
     navigate(`/order-success/${order.id}`);
     setLoading(false);

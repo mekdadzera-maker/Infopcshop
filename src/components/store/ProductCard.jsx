@@ -30,13 +30,17 @@ export default function ProductCard({ product }) {
             <img
               src={product.image_url}
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+              onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
             />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <Eye className="w-10 h-10" />
-            </div>
-          )}
+          ) : null}
+          <div
+            className="w-full h-full flex-col items-center justify-center text-muted-foreground gap-2"
+            style={{ display: product.image_url ? 'none' : 'flex' }}
+          >
+            <Eye className="w-12 h-12 opacity-30" />
+            <span className="text-xs opacity-50">{product.category}</span>
+          </div>
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">

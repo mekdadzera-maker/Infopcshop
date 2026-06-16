@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/lib/cartStore.jsx';
 import { toast } from '@/components/ui/use-toast';
+import ProductReviews from '@/components/store/ProductReviews';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -72,16 +73,17 @@ export default function ProductDetail() {
       <div className="grid md:grid-cols-2 gap-10">
         {/* Images */}
         <div>
-          <div className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4">
+          <div className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
             {allImages.length > 0 ? (
               <img
                 src={allImages[selectedImage]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain p-4"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                Pas d'image
+              <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+                <span className="text-4xl">🖥️</span>
+                <span className="text-sm">{product.category}</span>
               </div>
             )}
           </div>
@@ -192,6 +194,8 @@ export default function ProductDetail() {
           )}
         </div>
       </div>
+
+      <ProductReviews productId={product.id} />
     </div>
   );
 }

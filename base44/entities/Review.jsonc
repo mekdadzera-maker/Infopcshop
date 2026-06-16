@@ -1,0 +1,27 @@
+{
+  "name": "Review",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "ID of the reviewed product"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Reviewer's name"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Rating from 1 to 5"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Review comment"
+    }
+  },
+  "required": [
+    "product_id",
+    "author_name",
+    "rating"
+  ]
+}
