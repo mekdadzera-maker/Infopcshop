@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 import { CartProvider } from '@/lib/cartStore.jsx';
+import { LangProvider } from '@/lib/i18n';
 
 // Store pages
 import Home from '@/pages/Home';
@@ -94,13 +95,15 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
-        <CartProvider>
-          <Router>
-            <ScrollToTop />
-            <AuthenticatedApp />
-          </Router>
-          <Toaster />
-        </CartProvider>
+        <LangProvider>
+          <CartProvider>
+            <Router>
+              <ScrollToTop />
+              <AuthenticatedApp />
+            </Router>
+            <Toaster />
+          </CartProvider>
+        </LangProvider>
       </QueryClientProvider>
     </AuthProvider>
   )
