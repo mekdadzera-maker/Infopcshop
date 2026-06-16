@@ -8,6 +8,10 @@ import ProductCard from '@/components/store/ProductCard';
 import HeroSection from '@/components/home/HeroSection';
 import FeaturesBar from '@/components/home/FeaturesBar';
 import CategoryGrid from '@/components/home/CategoryGrid';
+import PCBuilderSection from '@/components/home/PCBuilderSection';
+import FAQSection from '@/components/home/FAQSection';
+
+const HARDWARE_IMAGE = 'https://media.base44.com/images/public/6a3176065c179e117d336ad5/481442ec6_generated_image.png';
 
 export default function Home() {
   const { data: featuredProducts = [] } = useQuery({
@@ -42,6 +46,32 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* PC Hardware Banner */}
+      <section className="max-w-7xl mx-auto px-4 py-10">
+        <div className="rounded-2xl overflow-hidden relative h-56 md:h-72">
+          <img src={HARDWARE_IMAGE} alt="PC Hardware" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center px-8 md:px-14">
+            <div>
+              <p className="text-primary font-semibold text-sm mb-1">INFO PC SBA</p>
+              <h2 className="font-display text-2xl md:text-4xl font-bold text-white mb-3">
+                PC Hardware<br />Components
+              </h2>
+              <Link to="/products">
+                <Button size="sm" className="gap-2">
+                  <ArrowRight className="w-4 h-4" /> Explorer
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PC Builder */}
+      <PCBuilderSection />
+
+      {/* FAQ */}
+      <FAQSection />
 
       {/* CTA */}
       <section className="bg-primary text-primary-foreground">
