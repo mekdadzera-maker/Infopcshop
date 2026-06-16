@@ -20,7 +20,7 @@ export default function ProductDetail() {
   const { data: product, isLoading } = useQuery({
     queryKey: ['product', id],
     queryFn: () => base44.entities.Product.filter({ id }),
-    select: (data) => data?.[0],
+    select: (data) => data?.[0]
   });
 
   if (isLoading) {
@@ -34,8 +34,8 @@ export default function ProductDetail() {
             <Skeleton className="h-20 w-full" />
           </div>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   if (!product) {
@@ -43,14 +43,14 @@ export default function ProductDetail() {
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <p className="text-lg text-muted-foreground">Produit introuvable</p>
         <Link to="/products"><Button variant="link">Retour aux produits</Button></Link>
-      </div>
-    );
+      </div>);
+
   }
 
   const allImages = [product.image_url, ...(product.gallery_urls || [])].filter(Boolean);
-  const discount = product.original_price
-    ? Math.round((1 - product.price / product.original_price) * 100)
-    : 0;
+  const discount = product.original_price ?
+  Math.round((1 - product.price / product.original_price) * 100) :
+  0;
 
   const handleAdd = () => {
     addItem(product, qty);
@@ -74,34 +74,34 @@ export default function ProductDetail() {
         {/* Images */}
         <div>
           <div className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
-            {allImages.length > 0 ? (
-              <img
-                src={allImages[selectedImage]}
-                alt={product.name}
-                className="w-full h-full object-contain p-4"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+            {allImages.length > 0 ?
+            <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/2b17e43c8_download__1_.png"
+
+            alt={product.name}
+            className="w-full h-full object-contain p-4" /> :
+
+
+            <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
                 <span className="text-4xl">🖥️</span>
                 <span className="text-sm">{product.category}</span>
               </div>
-            )}
+            }
           </div>
-          {allImages.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto">
-              {allImages.map((url, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedImage(i)}
-                  className={`w-16 h-16 rounded-lg overflow-hidden border-2 shrink-0 transition-colors ${
-                    selectedImage === i ? 'border-primary' : 'border-border'
-                  }`}
-                >
+          {allImages.length > 1 &&
+          <div className="flex gap-2 overflow-x-auto">
+              {allImages.map((url, i) =>
+            <button
+              key={i}
+              onClick={() => setSelectedImage(i)}
+              className={`w-16 h-16 rounded-lg overflow-hidden border-2 shrink-0 transition-colors ${
+              selectedImage === i ? 'border-primary' : 'border-border'}`
+              }>
+              
                   <img src={url} alt="" className="w-full h-full object-cover" />
                 </button>
-              ))}
+            )}
             </div>
-          )}
+          }
         </div>
 
         {/* Details */}
@@ -117,14 +117,14 @@ export default function ProductDetail() {
             <span className="font-display text-3xl font-bold text-primary">
               {product.price?.toLocaleString('fr-DZ')} DA
             </span>
-            {product.original_price && (
-              <span className="text-lg text-muted-foreground line-through">
+            {product.original_price &&
+            <span className="text-lg text-muted-foreground line-through">
                 {product.original_price?.toLocaleString('fr-DZ')} DA
               </span>
-            )}
-            {discount > 0 && (
-              <Badge className="bg-green-500 text-white">-{discount}%</Badge>
-            )}
+            }
+            {discount > 0 &&
+            <Badge className="bg-green-500 text-white">-{discount}%</Badge>
+            }
           </div>
 
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -133,18 +133,18 @@ export default function ProductDetail() {
 
           {/* Stock status */}
           <div className="flex items-center gap-2 mb-6">
-            {product.in_stock ? (
-              <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 gap-1">
+            {product.in_stock ?
+            <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 gap-1">
                 <Check className="w-3 h-3" /> En stock
-              </Badge>
-            ) : (
-              <Badge variant="destructive">Rupture de stock</Badge>
-            )}
+              </Badge> :
+
+            <Badge variant="destructive">Rupture de stock</Badge>
+            }
           </div>
 
           {/* Quantity & Add to cart */}
-          {product.in_stock && (
-            <div className="flex items-center gap-4 mb-8">
+          {product.in_stock &&
+          <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center border border-border rounded-lg">
                 <Button variant="ghost" size="icon" className="h-10 w-10" onClick={() => setQty(Math.max(1, qty - 1))}>
                   <Minus className="w-4 h-4" />
@@ -158,7 +158,7 @@ export default function ProductDetail() {
                 <ShoppingCart className="w-5 h-5" /> Ajouter au panier
               </Button>
             </div>
-          )}
+          }
 
           <Separator className="my-6" />
 
@@ -179,23 +179,23 @@ export default function ProductDetail() {
           </div>
 
           {/* Specs */}
-          {product.specs?.length > 0 && (
-            <div className="mt-8">
+          {product.specs?.length > 0 &&
+          <div className="mt-8">
               <h3 className="font-heading font-semibold mb-3">Caractéristiques</h3>
               <div className="bg-muted rounded-xl p-4 space-y-2">
-                {product.specs.map((spec, i) => (
-                  <div key={i} className="flex justify-between text-sm">
+                {product.specs.map((spec, i) =>
+              <div key={i} className="flex justify-between text-sm">
                     <span className="text-muted-foreground">{spec.label}</span>
                     <span className="font-medium">{spec.value}</span>
                   </div>
-                ))}
+              )}
               </div>
             </div>
-          )}
+          }
         </div>
       </div>
 
       <ProductReviews productId={product.id} />
-    </div>
-  );
+    </div>);
+
 }
