@@ -50,7 +50,7 @@ export default function HeroSection() {
             className="hidden md:block"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl pointer-events-none" />
               <img
                 src={HERO_IMAGE}
                 alt="PC Hardware Components"
