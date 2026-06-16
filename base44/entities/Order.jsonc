@@ -1,0 +1,83 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string"
+    },
+    "customer_phone": {
+      "type": "string"
+    },
+    "customer_email": {
+      "type": "string"
+    },
+    "wilaya": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "shipping_method": {
+      "type": "string",
+      "enum": [
+        "home_delivery",
+        "stop_desk"
+      ],
+      "description": "Home delivery or stop-desk pickup"
+    },
+    "shipping_fee": {
+      "type": "number"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "product_image": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "total": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_confirmation",
+        "confirmed",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ],
+      "default": "pending_confirmation"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "customer_name",
+    "customer_phone",
+    "wilaya",
+    "shipping_method",
+    "items",
+    "total"
+  ]
+}

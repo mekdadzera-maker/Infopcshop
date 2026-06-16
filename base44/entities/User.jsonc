@@ -1,0 +1,23 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "client"
+      ],
+      "default": "client"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "wilaya": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description"
+    },
+    "short_description": {
+      "type": "string",
+      "description": "Brief product summary for cards"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in DZD"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount (optional)"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Laptops",
+        "Desktops",
+        "Components",
+        "Peripherals",
+        "Networking",
+        "Storage",
+        "Accessories",
+        "Software",
+        "Printers",
+        "Surveillance"
+      ],
+      "description": "Product category"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Product brand"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Main product image URL"
+    },
+    "gallery_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional product images"
+    },
+    "specs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Technical specifications"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether product is in stock"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show on homepage featured section"
+    }
+  },
+  "required": [
+    "name",
+    "price",
+    "category"
+  ]
+}
