@@ -50,7 +50,7 @@ export default function Home() {
       {/* PC Hardware Banner */}
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="rounded-2xl overflow-hidden relative h-56 md:h-72">
-          <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/6a9a2da23_daniel-lezuch-I4DcRJ_Evd8-unsplash.jpg" alt="PC Hardware" className="w-full h-full object-cover" />
+          <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/928fbeaf7_sitraka-5hrYhjVlBgY-unsplash.jpg" alt="PC Hardware" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center px-8 md:px-14">
             <div>
               <p className="text-primary font-semibold text-sm mb-1">INFO PC SBA</p>
