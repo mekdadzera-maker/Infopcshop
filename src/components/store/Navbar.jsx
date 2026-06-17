@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useCart } from '@/lib/cartStore.jsx';
 import { useAuth } from '@/lib/AuthContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const LOGO_URL = '/src/assets/logo.png';
 
@@ -78,6 +79,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <Button variant="ghost" size="icon" className="relative" onClick={() => navigate('/cart')}>
             <ShoppingCart className="w-5 h-5" />
             {itemCount > 0 && (

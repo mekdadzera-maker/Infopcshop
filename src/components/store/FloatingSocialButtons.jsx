@@ -2,7 +2,7 @@ import React from 'react';
 
 const WHATSAPP_NUMBER = '213770662425';
 const TELEGRAM_USERNAME = 'infopcsba';
-const INSTAGRAM_USERNAME = 'infopc.sba';
+const INSTAGRAM_USERNAME = 'infopc_sba';
 
 export default function FloatingSocialButtons() {
   return (
