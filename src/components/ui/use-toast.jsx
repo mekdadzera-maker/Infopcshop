@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 
 const TOAST_LIMIT = 20;
-const TOAST_REMOVE_DELAY = 1000000;
+const TOAST_DURATION = 3000;
+const TOAST_REMOVE_DELAY = 1000;
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -19,6 +20,7 @@ function genId() {
 }
 
 const toastTimeouts = new Map();
+const toastAutoDismissTimeouts = new Map();
 
 const addToRemoveQueue = (toastId) => {
   if (toastTimeouts.has(toastId)) {
@@ -44,6 +46,14 @@ const _clearFromRemoveQueue = (toastId) => {
   }
 };
 
+const _clearAutoDismiss = (toastId) => {
+  const timeout = toastAutoDismissTimeouts.get(toastId);
+  if (timeout) {
+    clearTimeout(timeout);
+    toastAutoDismissTimeouts.delete(toastId);
+  }
+};
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.ADD_TOAST:
@@ -65,11 +75,19 @@ export const reducer = (state, action) => {
 
       // ! Side effects ! - This could be extracted into a dismissToast() action,
       // but I'll keep it here for simplicity
-      if (toastId) {
+          if (toastId) {
         addToRemoveQueue(toastId);
       } else {
         state.toasts.forEach((toast) => {
           addToRemoveQueue(toast.id);
+        });
+      }
+
+      if (toastId) {
+        _clearAutoDismiss(toastId);
+      } else {
+        state.toasts.forEach((toast) => {
+          _clearAutoDismiss(toast.id);
         });
       }
 
@@ -122,6 +140,19 @@ function toast({ ...props }) {
   const dismiss = () =>
     dispatch({ type: actionTypes.DISMISS_TOAST, toastId: id });
 
+  const scheduleAutoDismiss = () => {
+    if (toastAutoDismissTimeouts.has(id)) {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      toastAutoDismissTimeouts.delete(id);
+      dismiss();
+    }, TOAST_DURATION);
+
+    toastAutoDismissTimeouts.set(id, timeout);
+  };
+
   dispatch({
     type: actionTypes.ADD_TOAST,
     toast: {
@@ -133,6 +164,8 @@ function toast({ ...props }) {
       },
     },
   });
+
+  scheduleAutoDismiss();
 
   return {
     id,

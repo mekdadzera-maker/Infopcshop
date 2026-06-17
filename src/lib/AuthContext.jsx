@@ -4,6 +4,7 @@ import { appParams } from '@/lib/app-params';
 import { createAxiosClient } from '@base44/sdk/dist/utils/axios-client';
 
 const AuthContext = createContext();
+const ADMIN_EMAILS = ['mekdadzera@gmail.com'];
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -94,7 +95,11 @@ export const AuthProvider = ({ children }) => {
       // Now check if the user is authenticated
       setIsLoadingAuth(true);
       const currentUser = await base44.auth.me();
-      setUser(currentUser);
+      const enhancedUser = {
+        ...currentUser,
+        role: ADMIN_EMAILS.includes(currentUser.email) ? 'admin' : currentUser.role,
+      };
+      setUser(enhancedUser);
       setIsAuthenticated(true);
       setIsLoadingAuth(false);
       setAuthChecked(true);
