@@ -79,7 +79,7 @@ export default function PCBuilderSection() {
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-muted-foreground font-medium">{t.pcBuilder[key]}</p>
                   <p className="text-sm font-semibold truncate">
-                    {selected[key] ? selected[key].label : 'Choisir...'}
+                    {selected[key] ? selected[key].label : t.pcBuilder.choose}
                   </p>
                   {selected[key] && (
                     <p className="text-xs text-primary font-semibold mt-0.5">

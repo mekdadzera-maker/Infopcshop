@@ -4,6 +4,7 @@ import { ArrowRight, Truck, Shield, Headphones, Monitor } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { useLang } from '@/lib/i18n';
 import ProductCard from '@/components/store/ProductCard';
 import HeroSection from '@/components/home/HeroSection';
 import FeaturesBar from '@/components/home/FeaturesBar';
@@ -14,6 +15,7 @@ import FAQSection from '@/components/home/FAQSection';
 const HARDWARE_IMAGE = 'https://media.base44.com/images/public/6a3176065c179e117d336ad5/481442ec6_generated_image.png';
 
 export default function Home() {
+  const { t } = useLang();
   const { data: featuredProducts = [] } = useQuery({
     queryKey: ['featured-products'],
     queryFn: () => base44.entities.Product.filter({ featured: true }, '-created_date', 8)
@@ -30,12 +32,12 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 py-16">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">Sélection</p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold">Produits vedettes</h2>
+              <p className="text-sm font-medium text-primary mb-1">{t.selection}</p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold">{t.featured}</h2>
             </div>
             <Link to="/products">
               <Button variant="ghost" className="gap-2 text-primary">
-                Voir tout <ArrowRight className="w-4 h-4" />
+                {t.viewAll} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
@@ -55,11 +57,11 @@ export default function Home() {
             <div>
               <p className="text-primary font-semibold text-sm mb-1">INFO PC SBA</p>
               <h2 className="font-display text-2xl md:text-4xl font-bold text-white mb-3">
-                PC Hardware<br />Components
+                {t.home.hardwareTitle}<br />{t.home.hardwareSub}
               </h2>
               <Link to="/products">
                 <Button size="sm" className="gap-2">
-                  <ArrowRight className="w-4 h-4" /> Explorer
+                  <ArrowRight className="w-4 h-4" /> {t.explore}
                 </Button>
               </Link>
             </div>
@@ -77,14 +79,14 @@ export default function Home() {
       <section className="bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-3">
-            Besoin d'un conseil technique ?
+            {t.home.ctaTitle}
           </h2>
           <p className="text-primary-foreground/80 mb-6 max-w-lg mx-auto">
-            Notre équipe d'experts est disponible pour vous guider dans vos choix informatiques.
+            {t.home.ctaSub}
           </p>
           <Link to="/contact">
             <Button variant="secondary" size="lg" className="gap-2 font-semibold">
-              <Headphones className="w-5 h-5" /> Contactez-nous
+              <Headphones className="w-5 h-5" /> {t.home.ctaButton}
             </Button>
           </Link>
         </div>

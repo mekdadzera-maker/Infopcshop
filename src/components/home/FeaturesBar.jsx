@@ -1,14 +1,16 @@
 import React from 'react';
 import { Truck, Shield, Banknote, Headphones } from 'lucide-react';
-
-const features = [
-  { icon: Truck, title: 'Livraison nationale', desc: '58 wilayas couvertes' },
-  { icon: Banknote, title: 'Paiement à la livraison', desc: 'الدفع عند الاستلام' },
-  { icon: Shield, title: 'Garantie', desc: 'Produits garantis' },
-  { icon: Headphones, title: 'Support technique', desc: 'Assistance pro' },
-];
+import { useLang } from '@/lib/i18n';
 
 export default function FeaturesBar() {
+  const { t } = useLang();
+
+  const features = [
+    { icon: Truck, title: t.features.shipping, desc: t.features.shippingDesc },
+    { icon: Banknote, title: t.features.cod, desc: t.features.codDesc },
+    { icon: Shield, title: t.features.warranty, desc: t.features.warrantyDesc },
+    { icon: Headphones, title: t.features.support, desc: t.features.supportDesc },
+  ];
   return (
     <section className="border-y border-border bg-card">
       <div className="max-w-7xl mx-auto px-4 py-6">

@@ -6,22 +6,24 @@ import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useCart } from '@/lib/cartStore.jsx';
 import { useAuth } from '@/lib/AuthContext';
+import { useLang } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const LOGO_URL = '/src/assets/logo.png';
 
-const NAV_LINKS = [
-  { label: 'Accueil', path: '/' },
-  { label: 'Produits', path: '/products' },
-  { label: 'Contact', path: '/contact' },
-];
-
 export default function Navbar() {
   const { itemCount } = useCart();
   const { user } = useAuth();
+  const { t } = useLang();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const isAdmin = user?.role === 'admin';
+
+  const NAV_LINKS = [
+    { label: t.nav.home, path: '/' },
+    { label: t.nav.products, path: '/products' },
+    { label: t.nav.contact, path: '/contact' },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -39,17 +41,17 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <span className="hidden sm:inline">Bonjour, {user.full_name}</span>
+                <span className="hidden sm:inline">{t.nav.hello}, {user.full_name}</span>
                 {isAdmin && (
                   <Link to="/admin" className="flex items-center gap-1 hover:underline">
-                    <LayoutDashboard className="w-3 h-3" /> Dashboard
+                    <LayoutDashboard className="w-3 h-3" /> {t.nav.dashboard}
                   </Link>
                 )}
-                <Link to="/my-orders" className="hover:underline">Mes commandes</Link>
+                <Link to="/my-orders" className="hover:underline">{t.nav.myOrders}</Link>
               </>
             ) : (
               <button onClick={() => navigate('/login')} className="flex items-center gap-1 hover:underline">
-                <User className="w-3 h-3" /> Connexion
+                <User className="w-3 h-3" /> {t.nav.login}
               </button>
             )}
           </div>
@@ -115,11 +117,11 @@ export default function Navbar() {
                 )}
                 {user ? (
                   <Link to="/my-orders" className="text-lg font-medium" onClick={() => setOpen(false)}>
-                    Mes commandes
+                    {t.nav.myOrders}
                   </Link>
                 ) : (
                   <Button onClick={() => { navigate('/login'); setOpen(false); }}>
-                    Connexion
+                    {t.nav.login}
                   </Button>
                 )}
               </div>

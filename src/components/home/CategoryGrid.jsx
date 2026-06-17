@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Monitor, Cpu, Mouse, Wifi, HardDrive, Printer, Camera, Package } from 'lucide-react';
+import { useLang } from '@/lib/i18n';
 
 const categories = [
   { name: 'Laptops', icon: Monitor, color: 'bg-blue-500/10 text-blue-600' },
@@ -14,11 +15,12 @@ const categories = [
 ];
 
 export default function CategoryGrid() {
+  const { t } = useLang();
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-10">
-        <p className="text-sm font-medium text-primary mb-1">Catégories</p>
-        <h2 className="font-display text-2xl md:text-3xl font-bold">Parcourir par catégorie</h2>
+        <p className="text-sm font-medium text-primary mb-1">{t.categories}</p>
+        <h2 className="font-display text-2xl md:text-3xl font-bold">{t.browseCategories}</h2>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {categories.map(cat => (

@@ -5,9 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/lib/cartStore.jsx';
 import { toast } from '@/components/ui/use-toast';
+import { useLang } from '@/lib/i18n';
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
+  const { t } = useLang();
 
   const discount = product.original_price
     ? Math.round((1 - product.price / product.original_price) * 100)
@@ -18,7 +20,7 @@ export default function ProductCard({ product }) {
     e.stopPropagation();
     if (!product.in_stock) return;
     addItem(product);
-    toast({ title: 'Ajouté au panier', description: product.name });
+    toast({ title: t.product.addedToCart, description: product.name });
   };
 
   return (
@@ -45,13 +47,13 @@ export default function ProductCard({ product }) {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {!product.in_stock && (
-              <Badge variant="destructive" className="text-xs">Rupture</Badge>
+              <Badge variant="destructive" className="text-xs">{t.product.outOfStock}</Badge>
             )}
             {discount > 0 && (
               <Badge className="bg-green-500 text-white text-xs">-{discount}%</Badge>
             )}
             {product.featured && product.in_stock && (
-              <Badge className="bg-primary text-primary-foreground text-xs">Vedette</Badge>
+              <Badge className="bg-primary text-primary-foreground text-xs">{t.product.featured}</Badge>
             )}
           </div>
 

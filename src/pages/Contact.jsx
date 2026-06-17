@@ -2,27 +2,29 @@ import React from 'react';
 import { Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
-const contactInfo = [
-  {
-    icon: Phone,
-    label: 'Téléphone',
-    values: [
-      { display: '0770 66 24 25', href: 'tel:+213770662425' },
-      { display: '0560 86 33 70', href: 'tel:+213560863370' },
-    ],
-  },
-  { icon: MapPin, label: 'Adresse', value: 'N 50c Cité 345 Lgt Al-wiam Sidi Jilali, Sidi Bel Abbès' },
-  { icon: Clock, label: 'Horaires', value: 'Sam–Jeu: 9h00 – 20h00' },
-];
+import { useLang } from '@/lib/i18n';
 
 export default function Contact() {
+  const { t } = useLang();
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      label: t.contact.phone,
+      values: [
+        { display: '0770 66 24 25', href: 'tel:+213770662425' },
+        { display: '0560 86 33 70', href: 'tel:+213560863370' },
+      ],
+    },
+    { icon: MapPin, label: t.contact.address, value: 'N 50c Cité 345 Lgt Al-wiam Sidi Jilali, Sidi Bel Abbès' },
+    { icon: Clock, label: t.contact.hours, value: 'Sam–Jeu: 9h00 – 20h00' },
+  ];
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">Contactez-nous</h1>
+        <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">{t.contact.title}</h1>
         <p className="text-muted-foreground max-w-md mx-auto">
-          Notre équipe est à votre disposition pour toute question ou demande de devis.
+          {t.contact.subtitle}
         </p>
       </div>
 
@@ -40,7 +42,7 @@ export default function Contact() {
                     <div key={j}>
                       <p className="text-sm text-muted-foreground">{v.display}</p>
                       <Button variant="link" className="mt-0 h-auto py-0 text-xs" asChild>
-                        <a href={v.href}>Appeler</a>
+                        <a href={v.href}>{t.contact.call}</a>
                       </Button>
                     </div>
                   ))}
@@ -71,7 +73,7 @@ export default function Contact() {
       <div className="text-center mt-8">
         <Button variant="outline" className="gap-2" asChild>
           <a href="https://infopc.netlify.app" target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="w-4 h-4" /> Visiter notre site web
+            <ExternalLink className="w-4 h-4" /> {t.contact.visitSite}
           </a>
         </Button>
       </div>
