@@ -57,7 +57,7 @@ export default function Contact() {
       <div className="rounded-2xl overflow-hidden border border-border h-80">
         <iframe
           title="INFO PC SBA Location"
-          src="https://maps.google.com/maps?q=Cit%C3%A9+Al+Wiam+Sidi+Jilali+Sidi+Bel+Abb%C3%A8s&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312!2d-0.6267615!3d35.212218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7f010034610769%3A0x51dfe0322fe1e527!2sINFO+PC+SBA!5e0!3m2!1sfr!2sdz!4v1700000000000!5m2!1sfr!2sdz"
           width="100%"
           height="100%"
           style={{ border: 0 }}
