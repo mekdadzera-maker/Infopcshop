@@ -51,7 +51,7 @@ export default function HeroSection() {
             
             <div className="relative">
               <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl pointer-events-none" />
-              <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/e62956e10_timur-garifov--HlaGdSiC-g-unsplash.jpg"
+              <img src="https://media.base44.com/images/public/6a3176065c179e117d336ad5/1d952c25b_microsoft-copilot-pqMPnPo4_ZA-unsplash__1_.jpg"
 
               alt="PC Hardware Components"
               className="rounded-3xl w-full object-cover shadow-2xl" />
